@@ -18,3 +18,6 @@ export const serverToClientErrorMessageMap = new Map([
     REMOTE_DEBUGGING_ERROR_TEXT,
   ],
 ]);
+
+export const LOGIN_PAGE = "/login";
+export const LOGOUT_PAGE = "/logout";

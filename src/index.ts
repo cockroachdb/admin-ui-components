@@ -1,3 +1,4 @@
+import "src/protobufInit";
 import "antd/dist/antd.less";
 import * as util from "./util";
 export * from "./anchor";
@@ -11,6 +12,7 @@ export * from "./loading";
 export * from "./modal";
 export * from "./pageConfig";
 export * from "./pagination";
+export * from "./reduxStore";
 export * from "./search";
 export * from "./sortabletable";
 export * from "./sortedtable";

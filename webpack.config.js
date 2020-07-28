@@ -111,6 +111,8 @@ module.exports = {
   // dependencies, which allows browsers to cache those libraries between builds.
   externals: {
     d3: "d3",
+    "fetch-mock": "fetch-mock",
+    protobufjs: "protobufjs",
     react: {
       commonjs: "react",
       commonjs2: "react",
@@ -124,5 +126,10 @@ module.exports = {
       root: "ReactDom",
     },
     "react-router-dom": "react-router-dom",
+    "react-redux": "react-redux",
+    "redux-thunk": "redux-thunk",
+    "redux-saga": "redux-saga",
+    "connected-react-router": "connected-react-router",
+    "redux": "redux",
   },
 };
