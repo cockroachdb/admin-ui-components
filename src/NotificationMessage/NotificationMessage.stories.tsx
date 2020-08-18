@@ -56,7 +56,7 @@ const NotificationFrame: FunctionComponent<{
 );
 
 export const Demo = () => (
-  <section>
+  <section style={{ padding: "2rem" }}>
     <h1>Notification Types</h1>
     {notificationMessages.map(n => (
       <section key={n.id}>

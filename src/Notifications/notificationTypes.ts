@@ -14,7 +14,7 @@ export type NotificationTypeProp = {
 export type NotificationProps = {
   id: number;
   read: boolean;
-  timestamp: string | Date;
+  timestamp: string;
   type: NotificationType;
 };
 

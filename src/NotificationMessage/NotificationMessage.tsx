@@ -38,6 +38,7 @@ export const NotificationMessage: FunctionComponent<NotificationMessageProps> = 
   timestamp,
   title,
 }) => {
+  const time = new Date(timestamp);
   return (
     <section key={id} className={cx("notification-message", { unread: !read })}>
       <header className={cx("title")}>{title}</header>
@@ -48,7 +49,7 @@ export const NotificationMessage: FunctionComponent<NotificationMessageProps> = 
         <div className={cx("description")}>{truncate(description, 120)}</div>
       )}
       <div className={cx("timestamp")}>
-        <FuzzyTime timestamp={timestamp} />
+        <FuzzyTime timestamp={time} />
       </div>
     </section>
   );
