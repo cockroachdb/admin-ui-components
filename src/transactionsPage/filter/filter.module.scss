@@ -41,6 +41,7 @@ $dropdown-hover-color: darken($colors--background, 2.5%);
     padding: 18px 20px 22px 16px;
 
     .filter-label {
+      height: 16px;
       font-family: $font-family--base;
       font-weight: $font-weight--bold;
       font-size: $font-size--small;
@@ -89,6 +90,7 @@ $dropdown-hover-color: darken($colors--background, 2.5%);
       }
 
       &__label {
+        height: 35px;
         font-family: $font-family--base;
         font-style: normal;
         font-weight: normal;
@@ -117,7 +119,12 @@ $dropdown-hover-color: darken($colors--background, 2.5%);
   display: flex;
   height: 40px;
   border-radius: 3px;
-  border: 1px solid #C0C6D9;
+  border: 1px solid $colors--neutral-4;
+  
+  .Select-control {
+    height: inherit;
+    width: 100%;
+  }
 }
 
 .carret-down {
