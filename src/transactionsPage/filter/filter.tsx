@@ -1,7 +1,6 @@
 import React from "react";
 import Checkbox from "rc-checkbox";
 import Select from "react-select";
-import { Dropdown } from "../../dropdown";
 import { Button } from "../../button";
 import { CaretDown } from "@cockroachlabs/icons";
 import { Filters } from "../../transactionsPage";
@@ -134,13 +133,6 @@ export class Filter extends React.Component<TransactionsFilter, FilterState> {
         <div className={dropdownArea}>
           <div className={dropdownContentWrapper}>
             <div className={filterLabel.app}>App</div>
-            {/* <Dropdown
-              options={appNames}
-              onChange={e => this.handleChange(e, "app")}
-              title={"All"}
-              selected={filters.app}
-              {...defaultSelectProps}
-            /> */}
             <Select
               options={appNames}
               onChange={e => this.handleChange(e, "app")}

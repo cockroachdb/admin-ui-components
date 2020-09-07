@@ -4,6 +4,7 @@ export const data = {
     {
       key: {
         key_data: {
+          id: "673bf9d0055bbae332ad497072db9bbf",
           query:
             "WITH deleted_sessions AS (DELETE FROM sqlliveness WHERE expiration < $1 RETURNING session_id) SELECT count(*) FROM deleted_sessions",
           app: "$ internal-delete-sessions",
@@ -114,6 +115,7 @@ export const data = {
     {
       key: {
         key_data: {
+          id: "60d2c10043884cb136674a449007bc52",
           query: 'SELECT "generated" FROM system.reports_meta WHERE id = $1',
           app: "$ internal-get-previous-timestamp",
           distSQL: false,
@@ -173,6 +175,7 @@ export const data = {
     {
       key: {
         key_data: {
+          id: "d469b9ad35098627c7bc28a0eca86f0a",
           query:
             'SELECT id, "parentID", "parentSchemaID", name FROM system.namespace',
           app: "$ internal-get-all-names",
@@ -6475,6 +6478,7 @@ export const data = {
     {
       key: {
         key_data: {
+          id: "ba29a6d105491afdc2671ca4bd28ee5a",
           query: "SHOW COLUMNS FROM system.scheduled_jobs",
           app: "$ internal-admin-show-columns",
           distSQL: false,
@@ -8340,6 +8344,7 @@ export const data = {
     {
       key: {
         key_data: {
+          id: "ba29a6d105491afdc2671ca4bd28ee5Q",
           query: "SHOW CREATE system.descriptor",
           app: "$ internal-admin-show-create",
           distSQL: false,
@@ -14621,7 +14626,10 @@ export const data = {
     },
     {
       stats_data: {
-        statement_ids: ["ba29a6d105491afdc2671ca4bd28ee5a"],
+        statement_ids: [
+          "ba29a6d105491afdc2671ca4bd28ee5a",
+          "ba29a6d105491afdc2671ca4bd28ee5Q",
+        ],
         app: "$ internal-gc-jobs",
         stats: {
           count: "5",

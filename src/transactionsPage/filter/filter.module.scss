@@ -120,10 +120,8 @@ $dropdown-hover-color: darken($colors--background, 2.5%);
   height: 40px;
   border-radius: 3px;
   border: 1px solid $colors--neutral-4;
-  
-  .Select-control {
-    height: inherit;
-    width: 100%;
+  :global(.Select-control) {
+    width: unset;
   }
 }
 
