@@ -29,7 +29,7 @@ export const TransactionsTableStatistics: React.FC<TableStatistics> = ({
       <h4 className={coutTitle}>
         {paginationPageCount(
           { ...pagination, total: totalCount },
-          "statements",
+          "transactions",
           // selectedApp,
           search,
         )}

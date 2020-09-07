@@ -26,6 +26,7 @@ interface TState {
   pagination: ISortedTablePagination;
   search?: string;
   filters?: Filters;
+  statementIds: string[] | null;
 }
 
 export interface Stats {
@@ -46,6 +47,7 @@ export interface Transaction {
     };
   };
   node_id: number;
+  transactionStatements?: string;
 }
 
 export class TransactionsPage extends React.Component<
@@ -62,6 +64,7 @@ export class TransactionsPage extends React.Component<
       current: 1,
     },
     search: "",
+    statementIds: null,
   };
 
   onChangeSortSetting = (ss: SortSetting) => {
@@ -105,17 +108,21 @@ export class TransactionsPage extends React.Component<
     this.resetPagination();
   };
 
+  handleDetails = (statementIds: string[]) => {
+    this.setState({ statementIds });
+  };
+
   render() {
     if (!this.props.data.transactions) return <pre>test</pre>;
     const { statements, transactions, lastReset } = this.props.data;
-    const { pagination, search, filters } = this.state;
+    const { pagination, search, filters, statementIds } = this.state;
     const appNames = getAppNames(transactions);
     const data = searchTransactionsData(
       search,
       addTransactionStatements(transactions, statements),
     );
     const filteredData = filterTransactions(data, filters);
-    return (
+    return !statementIds ? (
       <div>
         <TransactionsPageHeader
           onSubmit={this.onSubmitSearchField}
@@ -131,6 +138,7 @@ export class TransactionsPage extends React.Component<
           sortSetting={this.state.sortSetting}
           onChangeSortSetting={this.onChangeSortSetting}
           pagination={pagination}
+          handleDetails={this.handleDetails}
         />
         <TransactionsPagePagination
           pageSize={pagination.pageSize}
@@ -139,6 +147,8 @@ export class TransactionsPage extends React.Component<
           onChange={this.onChangePage}
         />
       </div>
+    ) : (
+      <h1>IDS</h1>
     );
   }
 }

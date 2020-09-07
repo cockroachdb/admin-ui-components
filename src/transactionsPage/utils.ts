@@ -26,11 +26,14 @@ export const addTransactionStatements = (
 ) => {
   const data = transactions.map((item: any) => {
     const transactionStatements = item.stats_data.statement_ids.reduce(
-      (acc: string, current: any) => {
+      (acc: string, current: any, idx: number) => {
         const statement = statements.find(
           (stItem: any) => stItem.key.key_data.id === current,
         );
-        return statement ? `${acc} ${statement.key.key_data.query}` : acc;
+        const newLine = idx > 0 ? "\n" : "";
+        return statement
+          ? `${acc} ${newLine} ${statement.key.key_data.query}`
+          : acc;
       },
       "",
     );

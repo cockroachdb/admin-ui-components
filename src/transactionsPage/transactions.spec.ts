@@ -362,6 +362,7 @@ export const data = {
     {
       key: {
         key_data: {
+          id: "ba29a6d105491afdc2671ca4bd28ee5W",
           query: "SELECT id, config FROM system.zones",
           app: "$ internal-read-zone-configs",
           distSQL: false,
@@ -14629,6 +14630,7 @@ export const data = {
         statement_ids: [
           "ba29a6d105491afdc2671ca4bd28ee5a",
           "ba29a6d105491afdc2671ca4bd28ee5Q",
+          "ba29a6d105491afdc2671ca4bd28ee5W",
         ],
         app: "$ internal-gc-jobs",
         stats: {

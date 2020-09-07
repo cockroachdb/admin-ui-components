@@ -1,37 +1,51 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { getHighlightedText, Anchor } from "src/index";
 import { Tooltip2 as Tooltip } from "src/tooltip2";
-import { summarize, statementsSql } from "src/util";
-import { shortStatement } from "../../statementsTable/statementsTable";
+import { statementsSql } from "src/util";
 import classNames from "classnames/bind";
-import styles from "../../statementsTable/statementsTableContent.module.scss";
+import statementsStyles from "../../statementsTable/statementsTableContent.module.scss";
+import transactionsCellsStyles from "./transactionsCells.module.scss";
 
-const cx = classNames.bind(styles);
-const descriptionClassName = cx("cl-table-link__description");
-const overlayClassName = cx("cl-table-link__statement-tooltip--fixed-width");
-const hoverAreaClassName = cx("cl-table-link__tooltip-hover-area");
+const statementsCx = classNames.bind(statementsStyles);
+const ownCellStyles = classNames.bind(transactionsCellsStyles);
+const descriptionClassName = statementsCx("cl-table-link__description");
+const overlayClassName = statementsCx(
+  "cl-table-link__statement-tooltip--fixed-width",
+);
+const hoverAreaClassName = ownCellStyles("hover-area");
 
-export const textCell = (statement: string) => {
-  const summary = summarize(statement);
+interface TextCellProps {
+  statement: string;
+  transactionIds: string[];
+  handleDetails: (transactionIds: string[]) => void;
+}
+
+export const textCell = ({
+  statement,
+  transactionIds,
+  handleDetails,
+}: TextCellProps) => {
   return (
-    <Link to={`/${encodeURIComponent(statement)}`}>
-      <div>
-        <Tooltip
-          placement="bottom"
-          title={
-            <pre className={descriptionClassName}>
-              {getHighlightedText(statement, "text")}
-            </pre>
-          }
-          overlayClassName={overlayClassName}
-        >
-          <div className={hoverAreaClassName}>
-            {getHighlightedText(shortStatement(summary, statement), "text")}
-          </div>
-        </Tooltip>
-      </div>
-    </Link>
+    <div>
+      <Tooltip
+        placement="bottom"
+        title={
+          <pre className={descriptionClassName}>
+            {getHighlightedText(statement, "text")}
+          </pre>
+        }
+        overlayClassName={overlayClassName}
+      >
+        <div>
+          <text
+            onClick={() => handleDetails(transactionIds)}
+            className={hoverAreaClassName}
+          >
+            {statement}
+          </text>
+        </div>
+      </Tooltip>
+    </div>
   );
 };
 
@@ -40,7 +54,7 @@ export const titleCells = {
     <Tooltip
       placement="bottom"
       title={
-        <div className={cx("tooltip__table--title")}>
+        <div className={statementsCx("tooltip__table--title")}>
           <p>
             {"SQL statement "}
             <Anchor href={statementsSql} target="_blank">
@@ -62,7 +76,7 @@ export const titleCells = {
     <Tooltip
       placement="bottom"
       title={
-        <div className={cx("tooltip__table--title")}>
+        <div className={statementsCx("tooltip__table--title")}>
           <p>FILL THE TEXT</p>
         </div>
       }

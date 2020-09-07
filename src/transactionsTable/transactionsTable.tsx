@@ -29,12 +29,13 @@ interface TransactionsTable {
   pagination: ISortedTablePagination;
   lastReset: string;
   search?: string;
+  handleDetails: (statementIds: string[]) => void;
 }
 
 const { containerClass, latencyClasses, RowsAffectedClasses } = tableClasses;
 
 export const TransactionsTable: React.FC<TransactionsTable> = props => {
-  const { data, pagination, lastReset, search } = props;
+  const { data, pagination, lastReset, search, handleDetails } = props;
   const retryBar = transactionsRetryBarChart(data);
   const countBar = transactionsCountBarChart(data);
   const latencyBar = transactionsLatencyBarChart(data, latencyClasses.barChart);
@@ -43,40 +44,46 @@ export const TransactionsTable: React.FC<TransactionsTable> = props => {
     {
       name: "transactions",
       title: titleCells.transactions,
-      cell: (item: any) => textCell(item.transactionStatements),
-      sort: (item: any) => createLabel(item.transactionStatements),
+      cell: (item: Transaction) =>
+        textCell({
+          statement: item.transactionStatements,
+          transactionIds: item.stats_data.statement_ids,
+          handleDetails,
+        }),
+      sort: (item: Transaction) => createLabel(item.transactionStatements),
     },
     {
       name: "statements",
       title: titleCells.statements,
-      cell: (item: any) => item.stats_data.statement_ids.length,
-      sort: (item: any) => item.stats_data.statement_ids.length,
+      cell: (item: Transaction) => item.stats_data.statement_ids.length,
+      sort: (item: Transaction) => item.stats_data.statement_ids.length,
     },
     {
       name: "retries",
       title: StatementTableTitle.retries,
       cell: retryBar,
-      sort: (item: any) => longToInt(item.stats_data.stats.max_retries),
+      sort: (item: Transaction) =>
+        longToInt(Number(item.stats_data.stats.max_retries)),
     },
     {
       name: "execution count",
       title: StatementTableTitle.executionCount,
       cell: countBar,
-      sort: (item: any) => Number(FixLong(item.stats_data.stats.count)),
+      sort: (item: Transaction) => FixLong(Number(item.stats_data.stats.count)),
     },
     {
       name: "rows affected",
       title: StatementTableTitle.rowsAffected,
       cell: rowsBar,
       className: RowsAffectedClasses.column,
-      sort: (item: any) => item.stats_data.stats.num_rows.mean,
+      sort: (item: Transaction) => item.stats_data.stats.num_rows.mean,
     },
     {
       name: "latency",
       title: StatementTableTitle.latency,
       cell: latencyBar,
       className: latencyClasses.column,
-      sort: (item: any) => item.stats_data.stats.service_lat.mean,
+      sort: (item: Transaction) => item.stats_data.stats.service_lat.mean,
     },
   ];
   return (
