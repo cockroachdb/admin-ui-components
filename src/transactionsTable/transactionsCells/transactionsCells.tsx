@@ -12,6 +12,7 @@ const descriptionClassName = statementsCx("cl-table-link__description");
 const overlayClassName = statementsCx(
   "cl-table-link__statement-tooltip--fixed-width",
 );
+const textWrapper = ownCellStyles("text-wrapper");
 const hoverAreaClassName = ownCellStyles("hover-area");
 
 interface TextCellProps {
@@ -36,13 +37,13 @@ export const textCell = ({
         }
         overlayClassName={overlayClassName}
       >
-        <div>
-          <text
+        <div className={textWrapper}>
+          <div
             onClick={() => handleDetails(transactionIds)}
             className={hoverAreaClassName}
           >
             {statement}
-          </text>
+          </div>
         </div>
       </Tooltip>
     </div>
