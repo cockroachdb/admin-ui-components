@@ -1,0 +1,11 @@
+@import '../core/index.module';
+
+.statements-text {
+  background-color: #0C1628;
+  color: white;
+  white-space: pre-line;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  @include text--code;
+}

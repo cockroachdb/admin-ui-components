@@ -2,14 +2,16 @@ import React from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { TransactionsPageHeader } from "./transactionsPageHeader";
 import { TransactionsTable } from "../transactionsTable";
-
-import { SortSetting, ISortedTablePagination } from "../sortedtable";
+import { TransactionDetails } from "../transactionDetails";
+import { ISortedTablePagination } from "../sortedtable";
+import { SortSetting } from "../sortabletable";
 import { TransactionsPagePagination } from "./transactionsPagePagination";
 import { getAppNames } from "./utils";
 import {
   addTransactionStatements,
   searchTransactionsData,
   filterTransactions,
+  getStatementsById,
 } from "./utils";
 
 export interface Filters {
@@ -50,9 +52,13 @@ export interface Transaction {
   transactionStatements?: string;
 }
 
+export interface TransactionsPageProps {
+  data: any;
+  refreshData: () => void;
+}
+
 export class TransactionsPage extends React.Component<
-  RouteComponentProps & { data: any },
-  TState
+  RouteComponentProps & TransactionsPageProps
 > {
   state: TState = {
     sortSetting: {
@@ -67,6 +73,10 @@ export class TransactionsPage extends React.Component<
     statementIds: null,
   };
 
+  componentDidMount() {
+    this.props.refreshData();
+  }
+
   onChangeSortSetting = (ss: SortSetting) => {
     this.setState({
       sortSetting: ss,
@@ -79,7 +89,7 @@ export class TransactionsPage extends React.Component<
   };
 
   resetPagination = () => {
-    this.setState(prevState => {
+    this.setState((prevState: TState) => {
       return {
         pagination: {
           current: 1,
@@ -108,13 +118,14 @@ export class TransactionsPage extends React.Component<
     this.resetPagination();
   };
 
-  handleDetails = (statementIds: string[]) => {
+  handleDetails = (statementIds: string[] | null) => {
     this.setState({ statementIds });
   };
 
   render() {
-    if (!this.props.data.transactions) return <pre>test</pre>;
-    const { statements, transactions, lastReset } = this.props.data;
+    if (!this.props.data) return <pre>loading</pre>;
+    const { statements, transactions, last_reset } = this.props.data;
+    const lastReset = new Date(Number(last_reset.seconds) * 1000);
     const { pagination, search, filters, statementIds } = this.state;
     const appNames = getAppNames(transactions);
     const data = searchTransactionsData(
@@ -122,6 +133,9 @@ export class TransactionsPage extends React.Component<
       addTransactionStatements(transactions, statements),
     );
     const filteredData = filterTransactions(data, filters);
+    const statementsDetails =
+      statementIds && getStatementsById(statementIds, statements);
+
     return !statementIds ? (
       <div>
         <TransactionsPageHeader
@@ -148,7 +162,11 @@ export class TransactionsPage extends React.Component<
         />
       </div>
     ) : (
-      <h1>IDS</h1>
+      <TransactionDetails
+        statements={statementsDetails}
+        lastReset={lastReset}
+        handleDetails={this.handleDetails}
+      />
     );
   }
 }

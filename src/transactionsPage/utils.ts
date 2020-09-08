@@ -1,5 +1,6 @@
 import { Transaction, Filters } from "./";
 import { SelectOptions } from "./filter";
+import { StatementStatistics } from "src/util/appStats";
 
 export const getAppNames = (transactions: Transaction[]) => {
   return transactions.reduce(
@@ -21,19 +22,17 @@ export const getAppNames = (transactions: Transaction[]) => {
 };
 
 export const addTransactionStatements = (
-  transactions: any,
-  statements: any,
+  transactions: Transaction[],
+  statements: StatementStatistics[],
 ) => {
-  const data = transactions.map((item: any) => {
+  const data = transactions.map((item: Transaction) => {
     const transactionStatements = item.stats_data.statement_ids.reduce(
-      (acc: string, current: any, idx: number) => {
+      (acc: string, current: string) => {
         const statement = statements.find(
-          (stItem: any) => stItem.key.key_data.id === current,
+          (stItem: StatementStatistics) => stItem.key.key_data.id === current,
         );
-        const newLine = idx > 0 ? "\n" : "";
-        return statement
-          ? `${acc} ${newLine} ${statement.key.key_data.query}`
-          : acc;
+        // const newLine = idx > 0 ? "\n" : "";
+        return statement ? `${acc} ${statement.key.key_data.query}` : acc;
       },
       "",
     );
@@ -45,8 +44,36 @@ export const addTransactionStatements = (
   return data;
 };
 
-export const searchTransactionsData = (search: string, transactions: any) => {
-  return transactions.filter((transaction: any) =>
+export const collectStatementsText = (statements: StatementStatistics[]) => {
+  return statements.reduce(
+    (acc: string, current: StatementStatistics, idx: number) => {
+      const newLine = idx > 0 ? "\n" : "";
+      return `${acc} ${newLine} ${current.key.key_data.query}`;
+    },
+    "",
+  );
+};
+
+export const getStatementsById = (
+  statemetsIds: string[],
+  statemets: StatementStatistics[],
+) => {
+  return statemetsIds.map((id: string) => {
+    const statement = statemets.find(
+      (statement: StatementStatistics) => statement.key.key_data.id === id,
+    );
+    return {
+      ...statement,
+      label: statement.key.key_data.query,
+    };
+  });
+};
+
+export const searchTransactionsData = (
+  search: string,
+  transactions: Transaction[],
+) => {
+  return transactions.filter((transaction: Transaction) =>
     search
       .split(" ")
       .every(val =>

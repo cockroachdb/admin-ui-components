@@ -10,11 +10,12 @@ const { statistic, coutTitle, lastCleared } = statisticsClasses;
 interface TableStatistics {
   pagination: ISortedTablePagination;
   totalCount: number;
-  lastReset: string;
+  lastReset: Date;
   search: string;
+  arrayItemName: string;
 }
 
-const renderLastCleared = (lastReset: string) => {
+const renderLastCleared = (lastReset: string | Date) => {
   return `Last cleared ${moment.utc(lastReset).format(DATE_FORMAT)}`;
 };
 
@@ -23,13 +24,14 @@ export const TransactionsTableStatistics: React.FC<TableStatistics> = ({
   totalCount,
   lastReset,
   search,
+  arrayItemName,
 }) => {
   return (
     <div className={statistic}>
       <h4 className={coutTitle}>
         {paginationPageCount(
           { ...pagination, total: totalCount },
-          "transactions",
+          arrayItemName,
           // selectedApp,
           search,
         )}

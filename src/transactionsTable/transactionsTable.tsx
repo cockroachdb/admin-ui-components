@@ -25,11 +25,11 @@ import { SortSetting } from "../sortabletable";
 interface TransactionsTable {
   data: Transaction[];
   sortSetting: SortSetting;
-  onChangeSortSetting: any;
+  onChangeSortSetting: (ss: SortSetting) => void;
   pagination: ISortedTablePagination;
-  lastReset: string;
+  lastReset: Date;
   search?: string;
-  handleDetails: (statementIds: string[]) => void;
+  handleDetails: (statementIds: string[] | null) => void;
 }
 
 const { containerClass, latencyClasses, RowsAffectedClasses } = tableClasses;
@@ -93,6 +93,7 @@ export const TransactionsTable: React.FC<TransactionsTable> = props => {
         totalCount={data.length}
         lastReset={lastReset}
         search={search}
+        arrayItemName={"transactions"}
       />
       <SortedTable
         data={data}
