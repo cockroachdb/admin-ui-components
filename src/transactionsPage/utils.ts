@@ -2,11 +2,16 @@ import { Transaction, Filters } from "./";
 import { SelectOptions } from "./filter";
 import { StatementStatistics } from "src/util/appStats";
 
-export const getAppNames = (transactions: Transaction[]) => {
+export const getAppNames = (
+  transactions: Transaction[],
+  prefix: string,
+): SelectOptions[] => {
   return transactions.reduce(
-    (acc, current) => {
+    (acc: SelectOptions[], current: Transaction) => {
       const twin = acc.some(
-        (item: SelectOptions) => item.label === current.stats_data.app,
+        (o: SelectOptions) =>
+          o.label === current.stats_data.app ||
+          current.stats_data.app.split("-").includes(prefix),
       );
       return twin
         ? acc
@@ -17,7 +22,10 @@ export const getAppNames = (transactions: Transaction[]) => {
             },
           ]);
     },
-    [{ label: "All", value: "All" }],
+    [
+      { label: "All", value: "All" },
+      { label: prefix, value: prefix },
+    ],
   );
 };
 
@@ -31,7 +39,6 @@ export const addTransactionStatements = (
         const statement = statements.find(
           (stItem: StatementStatistics) => stItem.key.key_data.id === current,
         );
-        // const newLine = idx > 0 ? "\n" : "";
         return statement ? `${acc} ${statement.key.key_data.query}` : acc;
       },
       "",
@@ -55,11 +62,11 @@ export const collectStatementsText = (statements: StatementStatistics[]) => {
 };
 
 export const getStatementsById = (
-  statemetsIds: string[],
-  statemets: StatementStatistics[],
+  statementsIds: string[],
+  statements: StatementStatistics[],
 ) => {
-  return statemetsIds.map((id: string) => {
-    const statement = statemets.find(
+  return statementsIds.map((id: string) => {
+    const statement = statements.find(
       (statement: StatementStatistics) => statement.key.key_data.id === id,
     );
     return {
@@ -107,7 +114,7 @@ export const filterTransactions = (data: Transaction[], filters: Filters) => {
 
   const filteredTransactions = data.filter((transaction: Transaction) => {
     const validateTransaction = [
-      transaction.stats_data.app === filters.app || filters.app === "All",
+      transaction.stats_data.app.includes(filters.app) || filters.app === "All",
       transaction.stats_data.stats.service_lat.mean >= timeValue || timeValue === "empty",
     ];
     return validateTransaction.every(filter => filter);

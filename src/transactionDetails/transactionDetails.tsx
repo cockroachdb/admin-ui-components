@@ -1,9 +1,8 @@
 import React from "react";
 import { AggregateStatistics } from "../statementsTable";
 import { makeStatementsColumns } from "../statementsTable";
-import { SortedTable } from "../sortedtable";
+import { SortedTable, ISortedTablePagination } from "../sortedtable";
 import { ActivateDiagnosticsModalRef } from "../statementsDiagnostics";
-import { ISortedTablePagination } from "../sortedtable";
 import { SortSetting } from "../sortabletable";
 import { TransactionsPagePagination } from "../transactionsPage/transactionsPagePagination";
 import { TransactionsTableStatistics } from "../transactionsTable/transactionsTableStatistic";

@@ -5409,7 +5409,8 @@ export const data = {
     {
       key: {
         key_data: {
-          query: "SHOW COLUMNS FROM system.protected_ts_meta",
+          id: "e561a67eaccf34130dbcf13d1d75e1e2TEST",
+          query: "TEST TEST TEST",
           app: "$ internal-admin-show-columns",
           distSQL: false,
           failed: false,
@@ -16502,6 +16503,27 @@ export const data = {
       stats_data: {
         statement_ids: ["e561a67eaccf34130dbcf13d1d75e1e2"],
         app: "$ internal-admin-show-tables",
+        stats: {
+          count: "2",
+          max_retries: "0",
+          num_rows: { mean: 0, squared_diffs: 0 },
+          service_lat: {
+            mean: 0.0432495,
+            squared_diffs: 0.000005226144499999999,
+          },
+          retry_lat: { mean: 0, squared_diffs: 0 },
+          commit_lat: {
+            mean: 0.0000085,
+            squared_diffs: 4.5000000000000014e-12,
+          },
+        },
+      },
+      node_id: 1,
+    },
+    {
+      stats_data: {
+        statement_ids: ["e561a67eaccf34130dbcf13d1d75e1e2TEST"],
+        app: "TEST",
         stats: {
           count: "2",
           max_retries: "0",

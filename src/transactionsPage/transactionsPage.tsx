@@ -124,10 +124,15 @@ export class TransactionsPage extends React.Component<
 
   render() {
     if (!this.props.data) return <pre>loading</pre>;
-    const { statements, transactions, last_reset } = this.props.data;
+    const {
+      statements,
+      transactions,
+      last_reset,
+      internal_app_name_prefix,
+    } = this.props.data;
     const lastReset = new Date(Number(last_reset.seconds) * 1000);
     const { pagination, search, filters, statementIds } = this.state;
-    const appNames = getAppNames(transactions);
+    const appNames = getAppNames(transactions, internal_app_name_prefix);
     const data = searchTransactionsData(
       search,
       addTransactionStatements(transactions, statements),
