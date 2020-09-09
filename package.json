@@ -29,6 +29,7 @@
     "@cockroachlabs/icons": "^0.2.2",
     "@popperjs/core": "^2.4.0",
     "babel-polyfill": "^6.26.0",
+    "highlight.js": "^10.2.0",
     "long": "^4.0.0",
     "react-helmet": "^5.2.0",
     "react-popper": "^2.2.3",

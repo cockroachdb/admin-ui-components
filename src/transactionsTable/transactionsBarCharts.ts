@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import styles from "../barCharts/barCharts.module.scss";
 import { stdDevLong } from "src/util/appStats";
 import { Duration } from "src/util/format";
-import * as protos from "src/js/protos";
+import * as protos from "@cockroachlabs/crdb-protobuf-client";
 import {
   longToInt,
   makeBarChart,

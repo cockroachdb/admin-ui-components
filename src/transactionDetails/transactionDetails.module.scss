@@ -7,5 +7,7 @@
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
+  box-shadow: 0px 0px 1px rgba(67, 90, 111, 0.415);
+  border-radius: 3px;
   @include text--code;
 }

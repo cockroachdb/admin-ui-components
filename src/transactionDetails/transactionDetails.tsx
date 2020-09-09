@@ -9,15 +9,16 @@ import { TransactionsPagePagination } from "../transactionsPage/transactionsPage
 import { TransactionsTableStatistics } from "../transactionsTable/transactionsTableStatistic";
 import { baseHeadingClasses } from "../transactionsPage/transactionsPageClasses";
 import { Button } from "../button";
-import { statementsText } from "./transactionDetailsClasses";
 import { collectStatementsText } from "src/transactionsPage/utils";
 import { tableClasses } from "../transactionsTable/transactionsTableClasses";
+import { BackIcon } from "../icon";
+import { SqlBox } from "../sql";
 
 const { containerClass } = tableClasses;
 
 interface TransactionDetailsProps {
   statements?: AggregateStatistics[];
-  lastReset?: string;
+  lastReset?: string | Date;
   handleDetails: (statementIds: string[] | null) => void;
 }
 
@@ -62,20 +63,25 @@ export class TransactionDetails extends React.Component<
 
     return statements ? (
       <div>
-        <Button type="flat" onClick={() => handleDetails(null)}>
-          All transactions
-        </Button>
         <section className={baseHeadingClasses.wrapper}>
-          <h1 className={baseHeadingClasses.tableName}>Statements</h1>
+          <Button
+            onClick={() => handleDetails(null)}
+            type="unstyled-link"
+            size="small"
+            icon={BackIcon}
+            iconPosition="left"
+          >
+            All transactions
+          </Button>
+          <h1 className={baseHeadingClasses.tableName}>Transaction Details</h1>
         </section>
         <section className={containerClass}>
-          <div className={statementsText}>{statementsSummary}</div>
+          <SqlBox value={statementsSummary} />
           <TransactionsTableStatistics
             pagination={pagination}
             totalCount={statements.length}
             lastReset={lastReset}
-            search={""}
-            arrayItemName={"statements"}
+            arrayItemName={"statements for this transaction"}
           />
           <SortedTable
             data={statements}

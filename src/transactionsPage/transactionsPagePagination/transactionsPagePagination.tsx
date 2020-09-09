@@ -27,8 +27,8 @@ const customIcons = (
     case "jump-next":
       return (
         <div className={jump}>
-          <Icon type="right" />
           <span className={dots}>•••</span>
+          <Icon type="right" />
         </div>
       );
     default:

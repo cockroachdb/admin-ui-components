@@ -11,7 +11,7 @@ interface TableStatistics {
   pagination: ISortedTablePagination;
   totalCount: number;
   lastReset: Date;
-  search: string;
+  search?: string;
   arrayItemName: string;
 }
 
