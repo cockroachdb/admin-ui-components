@@ -32,6 +32,6 @@ export const tableClasses = {
 
 export const statisticsClasses = {
   statistic: pageCx("cl-table-statistic"),
-  coutTitle: pageCx("cl-count-title"),
+  countTitle: pageCx("cl-count-title"),
   lastCleared: pageCx("last-cleared-title"),
 };

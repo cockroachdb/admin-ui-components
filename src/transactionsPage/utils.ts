@@ -37,7 +37,7 @@ export const addTransactionStatements = (
     const transactionStatements = item.stats_data.statement_ids.reduce(
       (acc: string, current: string) => {
         const statement = statements.find(
-          (stItem: StatementStatistics) => stItem.key.key_data.id === current,
+          (stItem: StatementStatistics) => stItem.id === current,
         );
         return statement ? `${acc} ${statement.key.key_data.query}` : acc;
       },
@@ -67,7 +67,7 @@ export const getStatementsById = (
 ) => {
   return statementsIds.map((id: string) => {
     const statement = statements.find(
-      (statement: StatementStatistics) => statement.key.key_data.id === id,
+      (statement: StatementStatistics) => statement.id === id,
     );
     return {
       ...statement,

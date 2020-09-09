@@ -6,6 +6,8 @@ import { TransactionDetails } from "../transactionDetails";
 import { ISortedTablePagination } from "../sortedtable";
 import { SortSetting } from "../sortabletable";
 import { TransactionsPagePagination } from "./transactionsPagePagination";
+import { TransactionsPageStatistic } from "./transactionsPageStatistic";
+import { statisticsClasses } from "./transactionsPageClasses";
 import { getAppNames } from "./utils";
 import {
   addTransactionStatements,
@@ -124,22 +126,25 @@ export class TransactionsPage extends React.Component<
 
   render() {
     if (!this.props.data) return <pre>loading</pre>;
+    console.log(JSON.stringify(this.props.data));
     const {
       statements,
       transactions,
       last_reset,
       internal_app_name_prefix,
     } = this.props.data;
-    const lastReset = new Date(Number(last_reset.seconds) * 1000);
     const { pagination, search, filters, statementIds } = this.state;
+
+    const lastReset = new Date(Number(last_reset.seconds) * 1000);
     const appNames = getAppNames(transactions, internal_app_name_prefix);
+    const statementsDetails =
+      statementIds && getStatementsById(statementIds, statements);
+
     const data = searchTransactionsData(
       search,
       addTransactionStatements(transactions, statements),
     );
     const filteredData = filterTransactions(data, filters);
-    const statementsDetails =
-      statementIds && getStatementsById(statementIds, statements);
 
     return !statementIds ? (
       <div>
@@ -151,14 +156,23 @@ export class TransactionsPage extends React.Component<
           onSubmitFilters={this.onSubmitFilters}
           appNames={appNames}
         />
-        <TransactionsTable
-          data={filteredData.transactions}
-          lastReset={lastReset}
-          sortSetting={this.state.sortSetting}
-          onChangeSortSetting={this.onChangeSortSetting}
-          pagination={pagination}
-          handleDetails={this.handleDetails}
-        />
+        <section className={statisticsClasses.tableContainerClass}>
+          <TransactionsPageStatistic
+            pagination={pagination}
+            lastReset={lastReset}
+            search={search}
+            totalCount={filteredData.transactions.length}
+            arrayItemName="transactions"
+            activeFilters={filteredData.activeFilters}
+            onSubmitFilters={this.onSubmitFilters}
+          />
+          <TransactionsTable
+            data={filteredData.transactions}
+            sortSetting={this.state.sortSetting}
+            onChangeSortSetting={this.onChangeSortSetting}
+            handleDetails={this.handleDetails}
+          />
+        </section>
         <TransactionsPagePagination
           pageSize={pagination.pageSize}
           current={pagination.current}

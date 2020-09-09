@@ -1,6 +1,5 @@
 import React from "react";
 import { SortedTable } from "../sortedtable";
-import { ISortedTablePagination } from "../sortedtable";
 import { Transaction } from "../transactionsPage";
 // import {
 //   transactionsRetryBarChart,
@@ -15,7 +14,6 @@ import {
   transactionsRowsBarChart,
 } from "../barCharts";
 import { StatementTableTitle } from "../statementsTable/statementsTableContent";
-import { TransactionsTableStatistics } from "./transactionsTableStatistic";
 import { longToInt, createLabel } from "./utils";
 import { tableClasses } from "./transactionsTableClasses";
 import { textCell, titleCells } from "./transactionsCells";
@@ -26,16 +24,13 @@ interface TransactionsTable {
   data: Transaction[];
   sortSetting: SortSetting;
   onChangeSortSetting: (ss: SortSetting) => void;
-  pagination: ISortedTablePagination;
-  lastReset: Date;
-  search?: string;
   handleDetails: (statementIds: string[] | null) => void;
 }
 
-const { containerClass, latencyClasses, RowsAffectedClasses } = tableClasses;
+const { latencyClasses, RowsAffectedClasses } = tableClasses;
 
 export const TransactionsTable: React.FC<TransactionsTable> = props => {
-  const { data, pagination, lastReset, search, handleDetails } = props;
+  const { data, handleDetails } = props;
   const retryBar = transactionsRetryBarChart(data);
   const countBar = transactionsCountBarChart(data);
   const latencyBar = transactionsLatencyBarChart(data, latencyClasses.barChart);
@@ -43,7 +38,7 @@ export const TransactionsTable: React.FC<TransactionsTable> = props => {
   const columns = [
     {
       name: "transactions",
-      title: titleCells.transactions,
+      title: "transactions",
       cell: (item: Transaction) =>
         textCell({
           statement: item.transactionStatements,
@@ -54,7 +49,7 @@ export const TransactionsTable: React.FC<TransactionsTable> = props => {
     },
     {
       name: "statements",
-      title: titleCells.statements,
+      title: "statements",
       cell: (item: Transaction) => item.stats_data.statement_ids.length,
       sort: (item: Transaction) => item.stats_data.statement_ids.length,
     },
@@ -87,21 +82,12 @@ export const TransactionsTable: React.FC<TransactionsTable> = props => {
     },
   ];
   return (
-    <section className={containerClass}>
-      <TransactionsTableStatistics
-        pagination={pagination}
-        totalCount={data.length}
-        lastReset={lastReset}
-        search={search}
-        arrayItemName={"transactions"}
-      />
-      <SortedTable
-        data={data}
-        columns={columns}
-        className="statements-table"
-        {...props}
-      />
-    </section>
+    <SortedTable
+      data={data}
+      columns={columns}
+      className="statements-table"
+      {...props}
+    />
   );
 };
 

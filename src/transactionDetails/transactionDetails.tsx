@@ -5,7 +5,7 @@ import { SortedTable, ISortedTablePagination } from "../sortedtable";
 import { ActivateDiagnosticsModalRef } from "../statementsDiagnostics";
 import { SortSetting } from "../sortabletable";
 import { TransactionsPagePagination } from "../transactionsPage/transactionsPagePagination";
-import { TransactionsTableStatistics } from "../transactionsTable/transactionsTableStatistic";
+import { TransactionsPageStatistic } from "../transactionsPage/transactionsPageStatistic";
 import { baseHeadingClasses } from "../transactionsPage/transactionsPageClasses";
 import { Button } from "../button";
 import { collectStatementsText } from "src/transactionsPage/utils";
@@ -76,11 +76,12 @@ export class TransactionDetails extends React.Component<
         </section>
         <section className={containerClass}>
           <SqlBox value={statementsSummary} />
-          <TransactionsTableStatistics
+          <TransactionsPageStatistic
             pagination={pagination}
             totalCount={statements.length}
             lastReset={lastReset}
             arrayItemName={"statements for this transaction"}
+            activeFilters={0}
           />
           <SortedTable
             data={statements}

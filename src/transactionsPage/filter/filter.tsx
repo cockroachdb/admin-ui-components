@@ -1,5 +1,5 @@
 import React from "react";
-import Checkbox from "rc-checkbox";
+// import Checkbox from "rc-checkbox";
 import Select from "react-select";
 import { Button } from "../../button";
 import { CaretDown } from "@cockroachlabs/icons";
@@ -10,11 +10,11 @@ import {
   dropdownContentWrapper,
   timePair,
   filterLabel,
-  checkbox,
+  // checkbox,
   applyBtn,
   dropdown,
   hidden,
-  carretDown,
+  caretDown,
   dropdownSelect,
 } from "./filterClasses";
 
@@ -35,11 +35,11 @@ export interface SelectOptions {
   value: string;
 }
 
-const TransactionsType = [
-  { label: "Insert vaues 1", value: "Insert vaues 1" },
-  { label: "Insert vaues 2", value: "Insert vaues 2" },
-  { label: "Insert vaues 3", value: "Insert vaues 3" },
-];
+// const TransactionsType = [
+//   { label: "Insert values 1", value: "Insert values 1" },
+//   { label: "Insert values 2", value: "Insert values 2" },
+//   { label: "Insert values 3", value: "Insert values 3" },
+// ];
 
 const timeUnit = [
   { label: "seconds", value: "seconds" },
@@ -50,7 +50,7 @@ const defaultSelectProps = {
   className: dropdownSelect,
   searchable: false,
   clearable: false,
-  arrowRenderer: () => <CaretDown className={carretDown} />,
+  arrowRenderer: () => <CaretDown className={caretDown} />,
 };
 
 export class Filter extends React.Component<TransactionsFilter, FilterState> {
@@ -128,7 +128,7 @@ export class Filter extends React.Component<TransactionsFilter, FilterState> {
       <div onClick={this.outsideClick} ref={this.dropdownRef}>
         <div className={dropdownButton} onClick={this.toggleFilters}>
           Filters ({activeFilters})&nbsp;
-          <CaretDown className={carretDown} />
+          <CaretDown className={caretDown} />
         </div>
         <div className={dropdownArea}>
           <div className={dropdownContentWrapper}>
@@ -140,13 +140,13 @@ export class Filter extends React.Component<TransactionsFilter, FilterState> {
               placeholder="All"
               {...defaultSelectProps}
             />
-            <div className={filterLabel.type}> Transaction type </div>
+            {/* <div className={filterLabel.type}> Transaction type </div>
             <Select
               options={TransactionsType}
               onChange={e => this.handleChange(e, "transactionType")}
               placeholder={"Select DDL, DML"}
               {...defaultSelectProps}
-            />
+            /> */}
             <div className={filterLabel.query}>
               Query fingerprint runs longer than
             </div>
@@ -165,7 +165,7 @@ export class Filter extends React.Component<TransactionsFilter, FilterState> {
                 {...defaultSelectProps}
               />
             </section>
-            <div className={checkbox.fullScansWrapper}>
+            {/* <div className={checkbox.fullScansWrapper}>
               <Checkbox onChange={e => this.handleChange(e, "fullScans")} />
               <div className={checkbox.label}>
                 Only show transactions that contain queries with full table
@@ -177,7 +177,7 @@ export class Filter extends React.Component<TransactionsFilter, FilterState> {
               <div className={checkbox.label}>
                 Only show distributed transactions (across multiple nodes)
               </div>
-            </div>
+            </div> */}
             <div className={applyBtn.wrapper}>
               <Button
                 className={applyBtn.btn}

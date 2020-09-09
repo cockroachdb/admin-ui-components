@@ -41,16 +41,14 @@ export const TransactionsPagePagination: React.FC<PaginationProps> = ({
   current,
   total,
   onChange,
-}) => {
-  return (
-    <Pagination
-      size="small"
-      itemRender={customIcons}
-      pageSize={pageSize}
-      current={current}
-      total={total}
-      onChange={onChange}
-      hideOnSinglePage
-    />
-  );
-};
+}) => (
+  <Pagination
+    size="small"
+    itemRender={customIcons}
+    pageSize={pageSize}
+    current={current}
+    total={total}
+    onChange={onChange}
+    hideOnSinglePage
+  />
+);
