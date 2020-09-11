@@ -27,7 +27,6 @@ const myStyles = {
 interface TransactionsFilter {
   onSubmitFilters: (filters: Filters) => void;
   smth?: string;
-  outsideClick: React.ChangeEvent<HTMLElement>;
   appNames: SelectOptions[];
   activeFilters: number;
 }

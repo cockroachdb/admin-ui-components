@@ -15,6 +15,7 @@ import {
   filterTransactions,
   getStatementsById,
 } from "./utils";
+import { forIn } from "lodash";
 
 export interface Filters {
   app?: string;
@@ -71,13 +72,33 @@ export class TransactionsPage extends React.Component<
       pageSize: 10,
       current: 1,
     },
-    search: "",
+    search:
+      new URLSearchParams(this.props.history.location.search).get("q") || "",
     statementIds: null,
   };
 
   componentDidMount() {
     this.props.refreshData();
   }
+  componentDidUpdate() {
+    this.props.refreshData();
+  }
+
+  syncHistory = (params: Record<string, string | undefined>) => {
+    const { history } = this.props;
+    const currentSearchParams = new URLSearchParams(history.location.search);
+
+    forIn(params, (value, key) => {
+      if (!value) {
+        currentSearchParams.delete(key);
+      } else {
+        currentSearchParams.set(key, value);
+      }
+    });
+
+    history.location.search = currentSearchParams.toString();
+    history.replace(history.location);
+  };
 
   onChangeSortSetting = (ss: SortSetting) => {
     this.setState({
@@ -103,11 +124,17 @@ export class TransactionsPage extends React.Component<
 
   onClearSearchField = () => {
     this.setState({ search: "" });
+    this.syncHistory({
+      q: undefined,
+    });
   };
 
   onSubmitSearchField = (search: string) => {
     this.setState({ search });
     this.resetPagination();
+    this.syncHistory({
+      q: search,
+    });
   };
 
   onSubmitFilters = (filters: Filters) => {
@@ -144,6 +171,7 @@ export class TransactionsPage extends React.Component<
       addTransactionStatements(transactions, statements),
     );
     const filteredData = filterTransactions(data, filters);
+    const { current, pageSize } = pagination;
 
     return !statementIds ? (
       <div>
@@ -166,7 +194,10 @@ export class TransactionsPage extends React.Component<
             onSubmitFilters={this.onSubmitFilters}
           />
           <TransactionsTable
-            data={filteredData.transactions}
+            data={filteredData.transactions.slice(
+              (current - 1) * pageSize,
+              current * pageSize,
+            )}
             sortSetting={this.state.sortSetting}
             onChangeSortSetting={this.onChangeSortSetting}
             handleDetails={this.handleDetails}

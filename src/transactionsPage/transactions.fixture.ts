@@ -1,4 +1,24 @@
 /* eslint-disable @typescript-eslint/camelcase */
+import {createMemoryHistory} from "history";
+
+const history = createMemoryHistory({ initialEntries: ["/transactions"]});
+// @ts-ignore
+export const routeProps = {
+    history,
+    location: {
+        "pathname": "/transactions",
+        "search": "",
+        "hash": "",
+        "state": null,
+    },
+    "match": {
+        "path": "/transactions",
+        "url": "/transactions",
+        "isExact": true,
+        "params": {},
+    },
+}
+
 export const data = {
     "statements": [{
         "key": {

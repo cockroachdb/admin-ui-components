@@ -40,9 +40,6 @@ export class TransactionDetails extends React.Component<
       current: 1,
     },
   };
-  activateDiagnosticsRef: React.RefObject<
-    ActivateDiagnosticsModalRef
-  > = React.createRef();
 
   onChangeSortSetting = (ss: SortSetting) => {
     this.setState({
@@ -85,12 +82,7 @@ export class TransactionDetails extends React.Component<
           />
           <SortedTable
             data={statements}
-            columns={makeStatementsColumns(
-              statements,
-              "",
-              "",
-              this.activateDiagnosticsRef,
-            )}
+            columns={makeStatementsColumns(statements, "", "")}
             className="statements-table"
             sortSetting={sortSetting}
             onChangeSortSetting={this.onChangeSortSetting}

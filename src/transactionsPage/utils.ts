@@ -1,6 +1,8 @@
 import { Transaction, Filters } from "./";
 import { SelectOptions } from "./filter";
 import { StatementStatistics } from "src/util/appStats";
+import {ISortedTablePagination} from "../sortedtable";
+import {AggregateStatistics} from "../statementsTable";
 
 export const getAppNames = (
   transactions: Transaction[],
@@ -51,7 +53,7 @@ export const addTransactionStatements = (
   return data;
 };
 
-export const collectStatementsText = (statements: StatementStatistics[]) => {
+export const collectStatementsText = (statements: AggregateStatistics[]) => {
   return statements.reduce(
     (acc: string, current: StatementStatistics, idx: number) => {
       const newLine = idx > 0 ? "\n" : "";

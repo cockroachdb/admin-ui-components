@@ -32,7 +32,8 @@ export class Search extends React.Component<TSearchProps, ISearchState> {
     submitted: false,
   };
 
-  onSubmit = () => {
+  onSubmit = e => {
+    e && e.preventDefault();
     const { value } = this.state;
     const { onSubmit } = this.props;
     onSubmit(value);
