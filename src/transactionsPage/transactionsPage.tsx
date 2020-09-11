@@ -126,7 +126,6 @@ export class TransactionsPage extends React.Component<
 
   render() {
     if (!this.props.data) return <pre>loading</pre>;
-    console.log(JSON.stringify(this.props.data));
     const {
       statements,
       transactions,
