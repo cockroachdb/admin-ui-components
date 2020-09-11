@@ -18,12 +18,6 @@ import {
   dropdownSelect,
 } from "./filterClasses";
 
-const myStyles = {
-  control: () => ({
-    width: 500,
-  })
-}
-
 interface TransactionsFilter {
   onSubmitFilters: (filters: Filters) => void;
   smth?: string;

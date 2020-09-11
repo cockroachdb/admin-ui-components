@@ -124,19 +124,19 @@ $dropdown-hover-color: darken($colors--background, 2.5%);
 
   :global {
     .Select-control {
-      width: 100%;
-      height: 38px;
+      width: 100% !important;
+      height: 38px !important;
       .Select-arrow-zone {
-        padding-right: 14px;
+        padding-right: 14px !important;
       }
       div, .Select-multi-value-wrapper {
         div, .Select-value {
           span, .Select-value-label {
-            display: flex;
-            align-items: center;
-            height: 38px;
-            margin-left: 12px;
-            color: $colors--neutral-5;
+            display: flex !important;
+            align-items: center !important;
+            height: 38px !important;
+            margin-left: 12px !important;
+            color: $colors--neutral-5 !important;
           }
         }
       }
@@ -151,6 +151,3 @@ $dropdown-hover-color: darken($colors--background, 2.5%);
 .hide {
   display: none;
 }
-
-
-
