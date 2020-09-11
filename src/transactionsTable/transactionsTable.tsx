@@ -16,7 +16,7 @@ import {
 import { StatementTableTitle } from "../statementsTable/statementsTableContent";
 import { longToInt, createLabel } from "./utils";
 import { tableClasses } from "./transactionsTableClasses";
-import { textCell, titleCells } from "./transactionsCells";
+import { textCell } from "./transactionsCells";
 import { FixLong } from "src/util";
 import { SortSetting } from "../sortabletable";
 
@@ -27,13 +27,23 @@ interface TransactionsTable {
   handleDetails: (statementIds: string[] | null) => void;
 }
 
+export class TransactionsSortedTable extends SortedTable<Transaction> {}
+
 const { latencyClasses, RowsAffectedClasses } = tableClasses;
 
 export const TransactionsTable: React.FC<TransactionsTable> = props => {
   const { data, handleDetails } = props;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   const retryBar = transactionsRetryBarChart(data);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   const countBar = transactionsCountBarChart(data);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   const latencyBar = transactionsLatencyBarChart(data, latencyClasses.barChart);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   const rowsBar = transactionsRowsBarChart(data, RowsAffectedClasses.barChart);
   const columns = [
     {
@@ -81,10 +91,11 @@ export const TransactionsTable: React.FC<TransactionsTable> = props => {
       sort: (item: Transaction) => item.stats_data.stats.service_lat.mean,
     },
   ];
+
   return (
-    <SortedTable
+    <TransactionsSortedTable
       data={data}
-      columns={columns}
+      columns={columns as any}
       className="statements-table"
       {...props}
     />

@@ -10,6 +10,8 @@
 
 import React from "react";
 import classNames from "classnames/bind";
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import Back from "./back-arrow.svg";
 import styles from "./backIcon.module.scss";
 
@@ -17,9 +19,5 @@ const cx = classNames.bind(styles);
 
 // tslint:disable-next-line: variable-name
 export const BackIcon = () => (
-  <img
-    src={Back}
-    alt="back"
-    className={cx("root")}
-  />
+  <img src={Back} alt="back" className={cx("root")} />
 );

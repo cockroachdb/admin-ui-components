@@ -2,13 +2,15 @@
 import {createMemoryHistory} from "history";
 
 const history = createMemoryHistory({ initialEntries: ["/transactions"]});
-// @ts-ignore
+
 export const routeProps = {
     history,
     location: {
         "pathname": "/transactions",
         "search": "",
         "hash": "",
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
         "state": null,
     },
     "match": {

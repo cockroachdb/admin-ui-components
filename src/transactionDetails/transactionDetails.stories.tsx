@@ -12,7 +12,7 @@ storiesOf("Transactions Details", module)
   ))
   .add("with data", () => (
     <TransactionDetails
-      statements={data.statements}
+      statements={data.statements as any}
       lastReset={Date().toString()}
       handleDetails={() => {}}
     />

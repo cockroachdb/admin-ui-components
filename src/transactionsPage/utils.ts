@@ -1,8 +1,7 @@
 import { Transaction, Filters } from "./";
 import { SelectOptions } from "./filter";
 import { StatementStatistics } from "src/util/appStats";
-import {ISortedTablePagination} from "../sortedtable";
-import {AggregateStatistics} from "../statementsTable";
+import { AggregateStatistics } from "../statementsTable";
 
 export const getAppNames = (
   transactions: Transaction[],
@@ -39,8 +38,12 @@ export const addTransactionStatements = (
     const transactionStatements = item.stats_data.statement_ids.reduce(
       (acc: string, current: string) => {
         const statement = statements.find(
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
           (stItem: StatementStatistics) => stItem.id === current,
         );
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
         return statement ? `${acc} ${statement.key.key_data.query}` : acc;
       },
       "",
@@ -55,8 +58,12 @@ export const addTransactionStatements = (
 
 export const collectStatementsText = (statements: AggregateStatistics[]) => {
   return statements.reduce(
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     (acc: string, current: StatementStatistics, idx: number) => {
       const newLine = idx > 0 ? "\n" : "";
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       return `${acc} ${newLine} ${current.key.key_data.query}`;
     },
     "",
@@ -69,10 +76,14 @@ export const getStatementsById = (
 ) => {
   return statementsIds.map((id: string) => {
     const statement = statements.find(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       (statement: StatementStatistics) => statement.id === id,
     );
     return {
       ...statement,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       label: statement.key.key_data.query,
     };
   });
@@ -117,7 +128,8 @@ export const filterTransactions = (data: Transaction[], filters: Filters) => {
   const filteredTransactions = data.filter((transaction: Transaction) => {
     const validateTransaction = [
       transaction.stats_data.app.includes(filters.app) || filters.app === "All",
-      transaction.stats_data.stats.service_lat.mean >= timeValue || timeValue === "empty",
+      transaction.stats_data.stats.service_lat.mean >= timeValue ||
+        timeValue === "empty",
     ];
     return validateTransaction.every(filter => filter);
   });

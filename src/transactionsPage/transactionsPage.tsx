@@ -16,6 +16,7 @@ import {
   getStatementsById,
 } from "./utils";
 import { forIn } from "lodash";
+import {AggregateStatistics} from "../statementsTable";
 
 export interface Filters {
   app?: string;
@@ -212,7 +213,7 @@ export class TransactionsPage extends React.Component<
       </div>
     ) : (
       <TransactionDetails
-        statements={statementsDetails}
+        statements={(statementsDetails as any) as AggregateStatistics[]}
         lastReset={lastReset}
         handleDetails={this.handleDetails}
       />

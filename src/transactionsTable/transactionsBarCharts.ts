@@ -18,22 +18,33 @@ function bar(name: string, value: (d: StatementStatistics) => number) {
 }
 
 const retryBarT = [
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   bar("count-retry", d => longToInt(d.stats_data.stats.max_retries)),
 ];
 
 const countBarT = [
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   bar("count-first-try", d => longToInt(d.stats_data.stats.count)),
 ];
 
 const latencyBarT = [
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   bar("bar-chart__service-lat", d => d.stats_data.stats.service_lat.mean),
 ];
 const latencyStdDevT = bar(cx("bar-chart__overall-dev"), d =>
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   stdDevLong(d.stats_data.stats.service_lat, d.stats_data.stats.count),
 );
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 const rowsBarT = [bar("rows", d => d.stats_data.stats.num_rows.mean)];
 const rowsStdDevT = bar(cx("rows-dev"), d =>
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   stdDevLong(d.stats_data.stats.num_rows, d.stats_data.stats.count),
 );
 

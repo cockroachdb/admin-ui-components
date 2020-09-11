@@ -10,4 +10,6 @@ storiesOf("Transactions Page", module)
   .addDecorator(storyFn => (
     <div style={{ backgroundColor: "#F5F7FA" }}>{storyFn()}</div>
   ))
-  .add("with data", () => <TransactionsPage {...routeProps} data={data} refreshData={()=>{}}/>);
+  .add("with data", () => (
+    <TransactionsPage {...routeProps} data={data} refreshData={() => {}} />
+  ));
