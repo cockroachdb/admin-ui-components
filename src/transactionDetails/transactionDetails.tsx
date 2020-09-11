@@ -2,9 +2,8 @@ import React from "react";
 import { AggregateStatistics } from "../statementsTable";
 import { makeStatementsColumns } from "../statementsTable";
 import { SortedTable, ISortedTablePagination } from "../sortedtable";
-import { ActivateDiagnosticsModalRef } from "../statementsDiagnostics";
 import { SortSetting } from "../sortabletable";
-import { TransactionsPagePagination } from "../transactionsPage/transactionsPagePagination";
+import { Pagination } from "../pagination";
 import { TransactionsPageStatistic } from "../transactionsPage/transactionsPageStatistic";
 import { baseHeadingClasses } from "../transactionsPage/transactionsPageClasses";
 import { Button } from "../button";
@@ -88,7 +87,7 @@ export class TransactionDetails extends React.Component<
             onChangeSortSetting={this.onChangeSortSetting}
           />
         </section>
-        <TransactionsPagePagination
+        <Pagination
           pageSize={pagination.pageSize}
           current={pagination.current}
           total={statements.length}

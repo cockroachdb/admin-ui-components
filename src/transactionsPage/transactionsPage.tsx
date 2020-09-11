@@ -5,7 +5,7 @@ import { TransactionsTable } from "../transactionsTable";
 import { TransactionDetails } from "../transactionDetails";
 import { ISortedTablePagination } from "../sortedtable";
 import { SortSetting } from "../sortabletable";
-import { TransactionsPagePagination } from "./transactionsPagePagination";
+import { Pagination } from "../pagination";
 import { TransactionsPageStatistic } from "./transactionsPageStatistic";
 import { statisticsClasses } from "./transactionsPageClasses";
 import { getAppNames } from "./utils";
@@ -203,7 +203,7 @@ export class TransactionsPage extends React.Component<
             handleDetails={this.handleDetails}
           />
         </section>
-        <TransactionsPagePagination
+        <Pagination
           pageSize={pagination.pageSize}
           current={pagination.current}
           total={filteredData.transactions.length}
