@@ -30,32 +30,6 @@ export const getAppNames = (
   );
 };
 
-export const addTransactionStatements = (
-  transactions: Transaction[],
-  statements: StatementStatistics[],
-) => {
-  const data = transactions.map((item: Transaction) => {
-    const transactionStatements = item.stats_data.statement_ids.reduce(
-      (acc: string, current: string) => {
-        const statement = statements.find(
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
-          (stItem: StatementStatistics) => stItem.id === current,
-        );
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        return statement ? `${acc} ${statement.key.key_data.query}` : acc;
-      },
-      "",
-    );
-    return {
-      transactionStatements,
-      ...item,
-    };
-  });
-  return data;
-};
-
 export const collectStatementsText = (statements: AggregateStatistics[]) => {
   return statements.reduce(
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -92,15 +66,16 @@ export const getStatementsById = (
 export const searchTransactionsData = (
   search: string,
   transactions: Transaction[],
+  statements: StatementStatistics[],
 ) => {
   return transactions.filter((transaction: Transaction) =>
-    search
-      .split(" ")
-      .every(val =>
-        transaction.transactionStatements
-          .toLowerCase()
-          .includes(val.toLowerCase()),
-      ),
+    search.split(" ").every(val =>
+      collectStatementsText(
+        getStatementsById(transaction.stats_data.statement_ids, statements),
+      )
+        .toLowerCase()
+        .includes(val.toLowerCase()),
+    ),
   );
 };
 

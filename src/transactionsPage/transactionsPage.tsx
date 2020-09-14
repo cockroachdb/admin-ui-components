@@ -10,13 +10,12 @@ import { TransactionsPageStatistic } from "./transactionsPageStatistic";
 import { statisticsClasses } from "./transactionsPageClasses";
 import { getAppNames } from "./utils";
 import {
-  addTransactionStatements,
   searchTransactionsData,
   filterTransactions,
   getStatementsById,
 } from "./utils";
 import { forIn } from "lodash";
-import {AggregateStatistics} from "../statementsTable";
+import { AggregateStatistics } from "../statementsTable";
 
 export interface Filters {
   app?: string;
@@ -164,13 +163,11 @@ export class TransactionsPage extends React.Component<
 
     const lastReset = new Date(Number(last_reset.seconds) * 1000);
     const appNames = getAppNames(transactions, internal_app_name_prefix);
+
     const statementsDetails =
       statementIds && getStatementsById(statementIds, statements);
 
-    const data = searchTransactionsData(
-      search,
-      addTransactionStatements(transactions, statements),
-    );
+    const data = searchTransactionsData(search, transactions, statements);
     const filteredData = filterTransactions(data, filters);
     const { current, pageSize } = pagination;
 
@@ -195,18 +192,17 @@ export class TransactionsPage extends React.Component<
             onSubmitFilters={this.onSubmitFilters}
           />
           <TransactionsTable
-            data={filteredData.transactions.slice(
-              (current - 1) * pageSize,
-              current * pageSize,
-            )}
+            data={filteredData.transactions}
+            statements={statements}
             sortSetting={this.state.sortSetting}
             onChangeSortSetting={this.onChangeSortSetting}
             handleDetails={this.handleDetails}
+            pagination={pagination}
           />
         </section>
         <Pagination
-          pageSize={pagination.pageSize}
-          current={pagination.current}
+          pageSize={pageSize}
+          current={current}
           total={filteredData.transactions.length}
           onChange={this.onChangePage}
         />

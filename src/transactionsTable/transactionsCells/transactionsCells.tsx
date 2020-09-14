@@ -16,13 +16,13 @@ const textWrapper = ownCellStyles("text-wrapper");
 const hoverAreaClassName = ownCellStyles("hover-area");
 
 interface TextCellProps {
-  statement: string;
+  transactionText: string;
   transactionIds: string[];
   handleDetails: (transactionIds: string[]) => void;
 }
 
 export const textCell = ({
-  statement,
+  transactionText,
   transactionIds,
   handleDetails,
 }: TextCellProps) => {
@@ -32,7 +32,7 @@ export const textCell = ({
         placement="bottom"
         title={
           <pre className={descriptionClassName}>
-            {getHighlightedText(statement, "text")}
+            {getHighlightedText(transactionText, "text")}
           </pre>
         }
         overlayClassName={overlayClassName}
@@ -42,7 +42,7 @@ export const textCell = ({
             onClick={() => handleDetails(transactionIds)}
             className={hoverAreaClassName}
           >
-            {statement}
+            {transactionText}
           </div>
         </div>
       </Tooltip>

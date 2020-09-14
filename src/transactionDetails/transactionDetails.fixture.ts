@@ -1,7 +1,8 @@
 export const data = {
   statements: [
     {
-      label: "WITH deleted_sessions AS (DELETE FROM sqlliveness WHERE expiration < $1 RETURNING session_id) SELECT count(*) FROM deleted_sessions",
+      label:
+        "WITH deleted_sessions AS (DELETE FROM sqlliveness WHERE expiration < $1 RETURNING session_id) SELECT count(*) FROM deleted_sessions",
       key: {
         key_data: {
           id: "673bf9d0055bbae332ad497072db9bbf",
@@ -174,7 +175,8 @@ export const data = {
       },
     },
     {
-      label: 'SELECT id, "parentID", "parentSchemaID", name FROM system.namespace',
+      label:
+        'SELECT id, "parentID", "parentSchemaID", name FROM system.namespace',
       key: {
         key_data: {
           id: "d469b9ad35098627c7bc28a0eca86f0a",
@@ -236,7 +238,8 @@ export const data = {
       },
     },
     {
-      label: "SELECT (SELECT count(*) FROM system.jobs AS j WHERE ((j.created_by_type = _) AND (j.created_by_id = s.schedule_id)) AND (j.status NOT IN (_, _, __more1__))) AS num_running, s.* FROM system.scheduled_jobs AS s WHERE next_run < current_timestamp() ORDER BY random() LIMIT _",
+      label:
+        "SELECT (SELECT count(*) FROM system.jobs AS j WHERE ((j.created_by_type = _) AND (j.created_by_id = s.schedule_id)) AND (j.status NOT IN (_, _, __more1__))) AS num_running, s.* FROM system.scheduled_jobs AS s WHERE next_run < current_timestamp() ORDER BY random() LIMIT _",
       key: {
         key_data: {
           query:

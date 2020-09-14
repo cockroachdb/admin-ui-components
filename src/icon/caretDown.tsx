@@ -14,10 +14,6 @@ export interface IconProps {
   fill?: string;
 }
 
-CaretDown.defaultProps = {
-  fill: "#475872",
-};
-
 export function CaretDown(props: IconProps) {
   const { fill } = props;
 
@@ -32,3 +28,7 @@ export function CaretDown(props: IconProps) {
     </svg>
   );
 }
+
+CaretDown.defaultProps = {
+  fill: "#475872",
+};

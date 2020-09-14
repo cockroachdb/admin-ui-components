@@ -1,5 +1,5 @@
 import React from "react";
-import { SortedTable } from "../sortedtable";
+import { SortedTable, ISortedTablePagination } from "../sortedtable";
 import { Transaction } from "../transactionsPage";
 // import {
 //   transactionsRetryBarChart,
@@ -19,12 +19,18 @@ import { tableClasses } from "./transactionsTableClasses";
 import { textCell } from "./transactionsCells";
 import { FixLong } from "src/util";
 import { SortSetting } from "../sortabletable";
+import {
+  getStatementsById,
+  collectStatementsText,
+} from "../transactionsPage/utils";
 
 interface TransactionsTable {
   data: Transaction[];
   sortSetting: SortSetting;
   onChangeSortSetting: (ss: SortSetting) => void;
   handleDetails: (statementIds: string[] | null) => void;
+  pagination: ISortedTablePagination;
+  statements: any;
 }
 
 export class TransactionsSortedTable extends SortedTable<Transaction> {}
@@ -32,7 +38,7 @@ export class TransactionsSortedTable extends SortedTable<Transaction> {}
 const { latencyClasses, RowsAffectedClasses } = tableClasses;
 
 export const TransactionsTable: React.FC<TransactionsTable> = props => {
-  const { data, handleDetails } = props;
+  const { data, handleDetails, statements } = props;
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   const retryBar = transactionsRetryBarChart(data);
@@ -51,7 +57,9 @@ export const TransactionsTable: React.FC<TransactionsTable> = props => {
       title: "transactions",
       cell: (item: Transaction) =>
         textCell({
-          statement: item.transactionStatements,
+          transactionText: collectStatementsText(
+            getStatementsById(item.stats_data.statement_ids, statements),
+          ),
           transactionIds: item.stats_data.statement_ids,
           handleDetails,
         }),
