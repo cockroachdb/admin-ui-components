@@ -71,6 +71,8 @@ export const searchTransactionsData = (
   return transactions.filter((transaction: Transaction) =>
     search.split(" ").every(val =>
       collectStatementsText(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
         getStatementsById(transaction.stats_data.statement_ids, statements),
       )
         .toLowerCase()

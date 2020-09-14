@@ -58,6 +58,8 @@ export const TransactionsTable: React.FC<TransactionsTable> = props => {
       cell: (item: Transaction) =>
         textCell({
           transactionText: collectStatementsText(
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-ignore
             getStatementsById(item.stats_data.statement_ids, statements),
           ),
           transactionIds: item.stats_data.statement_ids,
