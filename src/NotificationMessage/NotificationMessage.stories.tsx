@@ -3,6 +3,10 @@ import React, { FunctionComponent, ReactNode } from "react";
 import { NotificationProps, generateNotificationProps } from "../Notifications";
 import { NotificationMessage } from "./index";
 
+type ReactProps = {
+  children: ReactNode;
+};
+
 export default {
   title: "Notfication Message",
   component: NotificationMessage,
@@ -49,22 +53,39 @@ const testNotifications: Array<NotificationProps> = [
 
 const notificationMessages = generateNotificationProps(testNotifications);
 
-const NotificationFrame: FunctionComponent<{
-  children: ReactNode;
-}> = ({ children }) => (
-  <section style={{ width: "30rem", padding: "2rem" }}>{children}</section>
+const NotificationsDemo: FunctionComponent<ReactProps> = ({ children }) => (
+  <section style={{ padding: "2rem" }}>{children}</section>
+);
+const NotificationsMessageTypes: FunctionComponent<ReactProps> = ({
+  children,
+}) => (
+  <section style={{ display: "flex", flexWrap: "wrap" }}>{children}</section>
+);
+const NotificationFrame: FunctionComponent<ReactProps> = ({ children }) => (
+  <section
+    style={{
+      width: "30rem",
+      padding: "2rem",
+      border: "1px dotted #222",
+      margin: "0 2rem 2rem 0",
+    }}
+  >
+    {children}
+  </section>
 );
 
 export const Demo = () => (
-  <section style={{ padding: "2rem" }}>
+  <NotificationsDemo>
     <h1>Notification Types</h1>
-    {notificationMessages.map(n => (
-      <section key={n.id}>
-        <code>{n.type}</code>
-        <NotificationFrame>
-          <NotificationMessage {...n} />
-        </NotificationFrame>
-      </section>
-    ))}
-  </section>
+    <NotificationsMessageTypes>
+      {notificationMessages.map(n => (
+        <section key={n.id}>
+          <code>{n.type}</code>
+          <NotificationFrame>
+            <NotificationMessage {...n} />
+          </NotificationFrame>
+        </section>
+      ))}
+    </NotificationsMessageTypes>
+  </NotificationsDemo>
 );
