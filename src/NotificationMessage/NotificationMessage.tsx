@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, HTMLAttributes } from "react";
 import classnames from "classnames/bind";
 import { Badge, BadgeIntent, FuzzyTime } from "@cockroachlabs/ui-components";
 
@@ -10,7 +10,9 @@ import {
 
 import styles from "./notificationMessage.module.scss";
 
-export type NotificationMessageProps = NotificationTypeProp & NotificationProps;
+export type NotificationMessageProps = NotificationTypeProp &
+  NotificationProps &
+  HTMLAttributes<HTMLElement>;
 
 const cx = classnames.bind(styles);
 
@@ -31,16 +33,22 @@ const severityIntent = (s: NotificationSeverity): BadgeIntent => {
 };
 
 export const NotificationMessage: FunctionComponent<NotificationMessageProps> = ({
-  id,
+  className,
   description,
+  id,
   read,
   severity,
   timestamp,
   title,
+  ...rest
 }) => {
   const time = new Date(timestamp);
   return (
-    <section key={id} className={cx("notification-message", { unread: !read })}>
+    <section
+      key={id}
+      className={cx("notification-message", { unread: !read }, className)}
+      {...rest}
+    >
       <header className={cx("title")}>{title}</header>
       <Badge className={cx("severity")} intent={severityIntent(severity)}>
         {severity}
