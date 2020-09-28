@@ -7,6 +7,7 @@ export * from "./button";
 export * from "./dropdown";
 export * from "./empty";
 export * from "./highlightedText";
+export * from "./link";
 export * from "./loading";
 export * from "./modal";
 export * from "./pageConfig";
