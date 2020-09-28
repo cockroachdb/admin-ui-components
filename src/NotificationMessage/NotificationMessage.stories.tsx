@@ -40,7 +40,7 @@ export const Demo = () => (
     <h1>Notification Types</h1>
     <NotificationsMessageTypes>
       {notificationMessages.map(n => (
-        <section key={n.id}>
+        <section key={n.notificationId}>
           <code>{n.type}</code>
           <NotificationFrame>
             <NotificationMessage {...n} />

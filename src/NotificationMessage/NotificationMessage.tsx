@@ -2,17 +2,21 @@ import React, { FunctionComponent, HTMLAttributes } from "react";
 import classnames from "classnames/bind";
 import { Badge, BadgeIntent, FuzzyTime } from "@cockroachlabs/ui-components";
 
-import {
-  NotificationTypeProp,
-  NotificationProps,
-  NotificationSeverity,
-} from "../Notifications";
+import { NotificationType, NotificationSeverity } from "../Notifications";
 
 import styles from "./notificationMessage.module.scss";
 
-export type NotificationMessageProps = NotificationTypeProp &
-  NotificationProps &
-  HTMLAttributes<HTMLElement>;
+export type OwnProps = {
+  description: string;
+  notificationId: number;
+  read: boolean;
+  severity: NotificationSeverity;
+  timestamp: string;
+  title: string;
+  type: NotificationType;
+};
+
+export type NotificationMessageProps = OwnProps & HTMLAttributes<HTMLElement>;
 
 const cx = classnames.bind(styles);
 
@@ -35,7 +39,6 @@ const severityIntent = (s: NotificationSeverity): BadgeIntent => {
 export const NotificationMessage: FunctionComponent<NotificationMessageProps> = ({
   className,
   description,
-  id,
   read,
   severity,
   timestamp,
@@ -45,7 +48,6 @@ export const NotificationMessage: FunctionComponent<NotificationMessageProps> = 
   const time = new Date(timestamp);
   return (
     <section
-      key={id}
       className={cx("notification-message", { unread: !read }, className)}
       {...rest}
     >
