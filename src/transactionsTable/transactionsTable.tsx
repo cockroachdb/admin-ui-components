@@ -29,6 +29,7 @@ interface TransactionsTable {
   pagination: ISortedTablePagination;
   statements: Statement[];
   search?: string;
+  renderNoResult?: React.ReactNode;
 }
 
 const { latencyClasses, RowsAffectedClasses } = tableClasses;

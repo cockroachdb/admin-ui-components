@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { createMemoryHistory } from "history";
+import Long from "long";
+import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
+type IStatementsResponse = cockroach.server.serverpb.IStatementsResponse;
 
 const history = createMemoryHistory({ initialEntries: ["/transactions"] });
 
@@ -21,7 +24,7 @@ export const routeProps = {
   },
 };
 
-export const data = {
+export const data: IStatementsResponse = {
   statements: [
     {
       key: {
@@ -38,9 +41,9 @@ export const data = {
         node_id: 5,
       },
       stats: {
-        count: "557",
-        first_attempt_count: "557",
-        max_retries: "0",
+        count: Long.fromNumber(557),
+        first_attempt_count: Long.fromNumber(557),
+        max_retries: Long.fromNumber(0),
         legacy_last_err: "",
         num_rows: { mean: 0, squared_diffs: 0 },
         parse_lat: { mean: 0, squared_diffs: 0 },
@@ -89,7 +92,7 @@ export const data = {
             ],
           },
           most_recent_plan_timestamp: {
-            seconds: "1599670292",
+            seconds: Long.fromNumber(1599670292),
             nanos: 111613000,
           },
         },
@@ -115,9 +118,9 @@ export const data = {
         node_id: 5,
       },
       stats: {
-        count: "70",
-        first_attempt_count: "70",
-        max_retries: "0",
+        count: Long.fromNumber(70),
+        first_attempt_count: Long.fromNumber(70),
+        max_retries: Long.fromNumber(0),
         legacy_last_err: "",
         num_rows: { mean: 0, squared_diffs: 0 },
         parse_lat: { mean: 0, squared_diffs: 0 },
@@ -152,7 +155,7 @@ export const data = {
             ],
           },
           most_recent_plan_timestamp: {
-            seconds: "1599670162",
+            seconds: Long.fromNumber(1599670162),
             nanos: 750239000,
           },
         },
@@ -179,9 +182,9 @@ export const data = {
         node_id: 5,
       },
       stats: {
-        count: "1",
-        first_attempt_count: "1",
-        max_retries: "0",
+        count: Long.fromNumber(1),
+        first_attempt_count: Long.fromNumber(1),
+        max_retries: Long.fromNumber(0),
         legacy_last_err: "",
         num_rows: { mean: 0, squared_diffs: 0 },
         parse_lat: { mean: 0.008484, squared_diffs: 0 },
@@ -210,7 +213,7 @@ export const data = {
             ],
           },
           most_recent_plan_timestamp: {
-            seconds: "1599667573",
+            seconds: Long.fromNumber(1599667573),
             nanos: 295410000,
           },
         },
@@ -234,9 +237,9 @@ export const data = {
         node_id: 5,
       },
       stats: {
-        count: "280",
-        first_attempt_count: "280",
-        max_retries: "0",
+        count: Long.fromNumber(280),
+        first_attempt_count: Long.fromNumber(280),
+        max_retries: Long.fromNumber(0),
         legacy_last_err: "",
         num_rows: { mean: 0, squared_diffs: 0 },
         parse_lat: { mean: 0, squared_diffs: 0 },
@@ -301,7 +304,7 @@ export const data = {
             ],
           },
           most_recent_plan_timestamp: {
-            seconds: "1599670292",
+            seconds: Long.fromNumber(1599670292),
             nanos: 111319000,
           },
         },
@@ -330,9 +333,9 @@ export const data = {
         node_id: 5,
       },
       stats: {
-        count: "1",
-        first_attempt_count: "1",
-        max_retries: "0",
+        count: Long.fromNumber(1),
+        first_attempt_count: Long.fromNumber(1),
+        max_retries: Long.fromNumber(0),
         legacy_last_err: "",
         num_rows: { mean: 1, squared_diffs: 0 },
         parse_lat: { mean: 0, squared_diffs: 0 },
@@ -356,7 +359,7 @@ export const data = {
             ],
           },
           most_recent_plan_timestamp: {
-            seconds: "1599667573",
+            seconds: Long.fromNumber(1599667573),
             nanos: 292763000,
           },
         },
@@ -379,9 +382,9 @@ export const data = {
         node_id: 5,
       },
       stats: {
-        count: "1",
-        first_attempt_count: "1",
-        max_retries: "0",
+        count: Long.fromNumber(1),
+        first_attempt_count: Long.fromNumber(1),
+        max_retries: Long.fromNumber(0),
         legacy_last_err: "",
         num_rows: { mean: 0, squared_diffs: 0 },
         parse_lat: { mean: 0.000453, squared_diffs: 0 },
@@ -394,7 +397,7 @@ export const data = {
           last_err: "",
           most_recent_plan_description: { name: "show" },
           most_recent_plan_timestamp: {
-            seconds: "1599667573",
+            seconds: Long.fromNumber(1599667573),
             nanos: 343125000,
           },
         },
@@ -417,9 +420,9 @@ export const data = {
         node_id: 5,
       },
       stats: {
-        count: "1",
-        first_attempt_count: "1",
-        max_retries: "0",
+        count: Long.fromNumber(1),
+        first_attempt_count: Long.fromNumber(1),
+        max_retries: Long.fromNumber(0),
         legacy_last_err: "",
         num_rows: { mean: 0, squared_diffs: 0 },
         parse_lat: { mean: 0, squared_diffs: 0 },
@@ -442,7 +445,7 @@ export const data = {
             ],
           },
           most_recent_plan_timestamp: {
-            seconds: "1599667573",
+            seconds: Long.fromNumber(1599667573),
             nanos: 342990000,
           },
         },
@@ -466,9 +469,9 @@ export const data = {
         node_id: 5,
       },
       stats: {
-        count: "141",
-        first_attempt_count: "141",
-        max_retries: "0",
+        count: Long.fromNumber(141),
+        first_attempt_count: Long.fromNumber(141),
+        max_retries: Long.fromNumber(0),
         legacy_last_err: "",
         num_rows: { mean: 0, squared_diffs: 0 },
         parse_lat: { mean: 0, squared_diffs: 0 },
@@ -553,7 +556,7 @@ export const data = {
             ],
           },
           most_recent_plan_timestamp: {
-            seconds: "1599670345",
+            seconds: Long.fromNumber(1599670345),
             nanos: 756723000,
           },
         },
@@ -577,9 +580,9 @@ export const data = {
         node_id: 5,
       },
       stats: {
-        count: "1",
-        first_attempt_count: "1",
-        max_retries: "0",
+        count: Long.fromNumber(1),
+        first_attempt_count: Long.fromNumber(1),
+        max_retries: Long.fromNumber(0),
         legacy_last_err: "",
         num_rows: { mean: 1, squared_diffs: 0 },
         parse_lat: { mean: 0, squared_diffs: 0 },
@@ -607,7 +610,7 @@ export const data = {
             ],
           },
           most_recent_plan_timestamp: {
-            seconds: "1599667573",
+            seconds: Long.fromNumber(1599667573),
             nanos: 330423000,
           },
         },
@@ -631,9 +634,9 @@ export const data = {
         node_id: 5,
       },
       stats: {
-        count: "24",
-        first_attempt_count: "24",
-        max_retries: "0",
+        count: Long.fromNumber(24),
+        first_attempt_count: Long.fromNumber(24),
+        max_retries: Long.fromNumber(0),
         legacy_last_err: "",
         num_rows: { mean: 0, squared_diffs: 0 },
         parse_lat: { mean: 0.0010775, squared_diffs: 0.000022485897999999995 },
@@ -694,7 +697,7 @@ export const data = {
             ],
           },
           most_recent_plan_timestamp: {
-            seconds: "1599670094",
+            seconds: Long.fromNumber(1599670094),
             nanos: 152349000,
           },
         },
@@ -704,7 +707,7 @@ export const data = {
       id: "qqq",
     },
   ],
-  last_reset: { seconds: "1599667572", nanos: 688635000 },
+  last_reset: { seconds: Long.fromNumber(1599667572), nanos: 688635000 },
   internal_app_name_prefix: "$ internal",
   transactions: [
     {
@@ -712,8 +715,8 @@ export const data = {
         statement_ids: ["ppp"],
         app: "$ internal-select-running/get-claimed-jobs",
         stats: {
-          count: "93",
-          max_retries: "0",
+          count: Long.fromNumber(93),
+          max_retries: Long.fromNumber(0),
           num_rows: { mean: 0, squared_diffs: 0 },
           service_lat: {
             mean: 0.05745331182795698,
@@ -733,8 +736,8 @@ export const data = {
         statement_ids: ["ooo"],
         app: "$ internal-stmt-diag-poll",
         stats: {
-          count: "281",
-          max_retries: "0",
+          count: Long.fromNumber(281),
+          max_retries: Long.fromNumber(0),
           num_rows: { mean: 0, squared_diffs: 0 },
           service_lat: {
             mean: 0.024999483985765122,
@@ -754,8 +757,8 @@ export const data = {
         statement_ids: ["iii"],
         app: "$ internal-get-tables",
         stats: {
-          count: "1",
-          max_retries: "0",
+          count: Long.fromNumber(1),
+          max_retries: Long.fromNumber(0),
           num_rows: { mean: 0, squared_diffs: 0 },
           service_lat: { mean: 0.081996, squared_diffs: 0 },
           retry_lat: { mean: 0, squared_diffs: 0 },
@@ -769,8 +772,8 @@ export const data = {
         statement_ids: ["uuu"],
         app: "$ internal-read orphaned leases",
         stats: {
-          count: "1",
-          max_retries: "0",
+          count: Long.fromNumber(1),
+          max_retries: Long.fromNumber(0),
           num_rows: { mean: 0, squared_diffs: 0 },
           service_lat: { mean: 0.027685, squared_diffs: 0 },
           retry_lat: { mean: 0, squared_diffs: 0 },
@@ -784,8 +787,8 @@ export const data = {
         statement_ids: ["yyy"],
         app: "$ internal-expire-sessions",
         stats: {
-          count: "280",
-          max_retries: "0",
+          count: Long.fromNumber(280),
+          max_retries: Long.fromNumber(0),
           num_rows: { mean: 0, squared_diffs: 0 },
           service_lat: {
             mean: 0.07074643571428572,
@@ -802,8 +805,8 @@ export const data = {
         statement_ids: ["ttt"],
         app: "$ internal-show-version",
         stats: {
-          count: "1",
-          max_retries: "0",
+          count: Long.fromNumber(1),
+          max_retries: Long.fromNumber(0),
           num_rows: { mean: 0, squared_diffs: 0 },
           service_lat: { mean: 0.066901, squared_diffs: 0 },
           retry_lat: { mean: 0, squared_diffs: 0 },
@@ -817,8 +820,8 @@ export const data = {
         statement_ids: ["rrr", "qqq"],
         app: "$ internal-delete-sessions",
         stats: {
-          count: "141",
-          max_retries: "0",
+          count: Long.fromNumber(141),
+          max_retries: Long.fromNumber(0),
           num_rows: { mean: 0, squared_diffs: 0 },
           service_lat: {
             mean: 0.04333560992907801,
@@ -838,8 +841,8 @@ export const data = {
         statement_ids: ["eee"],
         app: "$ TEST",
         stats: {
-          count: "278",
-          max_retries: "0",
+          count: Long.fromNumber(278),
+          max_retries: Long.fromNumber(0),
           num_rows: { mean: 5, squared_diffs: 0 },
           service_lat: {
             mean: 0.10633510071942444,
@@ -856,8 +859,8 @@ export const data = {
         statement_ids: ["www"],
         app: "$ TEST",
         stats: {
-          count: "140",
-          max_retries: "0",
+          count: Long.fromNumber(140),
+          max_retries: Long.fromNumber(0),
           num_rows: { mean: 3, squared_diffs: 0 },
           service_lat: {
             mean: 0.08878077142857142,
@@ -877,8 +880,8 @@ export const data = {
         statement_ids: ["qqq"],
         app: "$ TEST",
         stats: {
-          count: "280",
-          max_retries: "0",
+          count: Long.fromNumber(280),
+          max_retries: Long.fromNumber(0),
           num_rows: { mean: 0, squared_diffs: 0 },
           service_lat: {
             mean: 0.06983223571428572,
