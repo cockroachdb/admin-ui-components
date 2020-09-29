@@ -49,16 +49,18 @@ export const NotificationMessage: FunctionComponent<NotificationMessageProps> = 
     <section
       className={cx("notification-message", { unread: !read }, className)}
     >
-      <header className={cx("title")}>{title}</header>
-      <Badge className={cx("severity")} intent={severityIntent(severity)}>
-        {severity}
-      </Badge>
-      {description && (
-        <div className={cx("description")}>{truncate(description, 120)}</div>
-      )}
-      <div className={cx("timestamp")}>
-        <FuzzyTime timestamp={time} />
-      </div>
+      <section className={cx("message-frame")}>
+        <header className={cx("title")}>{title}</header>
+        <Badge className={cx("severity")} intent={severityIntent(severity)}>
+          {severity}
+        </Badge>
+        {description && (
+          <div className={cx("description")}>{truncate(description, 120)}</div>
+        )}
+        <footer className={cx("timestamp")}>
+          <FuzzyTime timestamp={time} />
+        </footer>
+      </section>
     </section>
   );
 };

@@ -1,10 +1,18 @@
+@import "~@cockroachlabs/design-tokens/dist/web/tokens";
 @import "../core/index.module.scss";
 
 .notification-message {
-  box-shadow: 0px 1px 0px #dbe1ea;
-  font-family: "SourceSansPro-Regular, sans-serif";
-  margin-left: 1.875rem;
+  font-family: "SourceSansPro-Regular", sans-serif;
+  padding-left: 28px;
   position: relative;
+}
+
+.message-frame {
+  border-bottom: 1px solid $color-core-neutral-3;
+  padding: 8px 13px 0;
+  .notification-message:hover & {
+    background-color: $color-core-neutral-1;
+  }
 }
 
 .unread {
@@ -15,32 +23,35 @@
   content: "";
   border-radius: 5px;
   position: absolute;
-  left: -1.75rem;
-  top: 0.4375rem;
-  height: 0.625rem;
-  width: 0.625rem;
-  background-color: #0788ff;
+  left: 0;
+  top: 16px;
+  height: 10px;
+  width: 10px;
+  background-color: $color-core-blue-3;
 }
 
 .title {
-  font-size: 0.875rem;
+  font-size: 14px;
   font-weight: bold;
-  line-height: 1.5rem;
-  margin: 1rem 0;
+  line-height: 24px;
+
+  .notification-message:hover & {
+    color: $color-core-blue-3;
+  }
 }
 
 .description {
-  font-size: 0.875rem;
-  line-height: 1.2rem;
-  margin: 1rem 0;
+  font-size: 14px;
+  line-height: 22px;
+  margin: 0;
 }
 
 .timestamp {
-  margin: 1rem 0 0.5rem;
+  margin: 16px 0 8px;
 }
 
 .severity {
   position: absolute;
-  top: 2px;
+  top: 8px;
   right: 10px;
 }

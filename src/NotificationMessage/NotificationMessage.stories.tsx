@@ -26,7 +26,7 @@ const NotificationFrame: FunctionComponent<ReactProps> = ({ children }) => (
   <section
     style={{
       width: "30rem",
-      padding: "2rem",
+      padding: "2rem 1rem",
       border: "1px dotted #222",
       margin: "0 2rem 2rem 0",
     }}

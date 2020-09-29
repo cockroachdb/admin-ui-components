@@ -50,14 +50,11 @@ export const NotificationWidget: FunctionComponent<NotificationWidgetProps> = ({
         />
       ))}
     </div>
-    <footer className={cx("indent")}>
-      <Link
-        className={cx("widget-footer-link")}
-        onClick={markAllNotificationsRead}
-      >
+    <footer className={cx("footer", "indent")}>
+      <Link className={cx("footer-link")} onClick={markAllNotificationsRead}>
         Mark All as Read
       </Link>
-      | <NotificationCenterLink className={cx("widget-footer-link")} />
+      | <NotificationCenterLink className={cx("footer-link")} />
     </footer>
 
     {debug && (
