@@ -43,13 +43,11 @@ export const NotificationMessage: FunctionComponent<NotificationMessageProps> = 
   severity,
   timestamp,
   title,
-  ...rest
 }) => {
   const time = new Date(timestamp);
   return (
     <section
       className={cx("notification-message", { unread: !read }, className)}
-      {...rest}
     >
       <header className={cx("title")}>{title}</header>
       <Badge className={cx("severity")} intent={severityIntent(severity)}>
