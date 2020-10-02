@@ -12,7 +12,6 @@ export * from "./modal";
 export * from "./pageConfig";
 export * from "./pagination";
 export * from "./search";
-export * from "./sortabletable";
 export * from "./sortedtable";
 export * from "./statementsDiagnostics";
 export * from "./statementsPage";

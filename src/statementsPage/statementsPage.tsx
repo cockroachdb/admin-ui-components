@@ -29,7 +29,7 @@ import {
 import { ISortedTablePagination } from "../sortedtable";
 import { statementsTable } from "src/util/docs";
 import styles from "./statementsPage.module.scss";
-import sortableTableStyles from "../sortabletable/sortabletable.module.scss";
+import sortableTableStyles from "../sortedtable/sortedtable.module.scss";
 
 const cx = classNames.bind(styles);
 const sortableTableCx = classNames.bind(sortableTableStyles);
