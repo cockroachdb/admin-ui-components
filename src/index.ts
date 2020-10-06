@@ -6,7 +6,7 @@ export * from "./barCharts";
 export * from "./button";
 export * from "./dropdown";
 export * from "./empty";
-export * from "./emptyState";
+export * from "./emptyTablePlaceholder";
 export * from "./highlightedText";
 export * from "./loading";
 export * from "./modal";
