@@ -59,7 +59,7 @@ export class TransactionsPage extends React.Component<
       ascending: false,
     },
     pagination: {
-      pageSize: 10,
+      pageSize: 20,
       current: 1,
     },
     search: this.trxSearchParams("q", ""),
