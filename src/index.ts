@@ -18,6 +18,7 @@ export * from "./sortedtable";
 export * from "./statementsDiagnostics";
 export * from "./statementsPage";
 export * from "./statementsTable";
+export * from "./store";
 export * from "./transactionsPage";
 export * from "./text";
 export * from "./tooltip";

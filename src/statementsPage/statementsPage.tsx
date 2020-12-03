@@ -22,14 +22,14 @@ import {
   AggregateStatistics,
   makeStatementsColumns,
   StatementsSortedTable,
-} from "../../statementsTable";
+} from "../statementsTable";
 import {
   ActivateStatementDiagnosticsModal,
   ActivateDiagnosticsModalRef,
 } from "src/statementsDiagnostics";
-import { ISortedTablePagination } from "../../sortedtable";
+import { ISortedTablePagination } from "../sortedtable";
 import styles from "./statementsPage.module.scss";
-import sortableTableStyles from "../../sortabletable/sortabletable.module.scss";
+import sortableTableStyles from "src/sortabletable/sortabletable.module.scss";
 import { EmptyStatementsPlaceholder } from "./emptyStatementsPlaceholder";
 import { cockroach } from "@cockroachlabs/crdb-protobuf-client";
 
