@@ -1,19 +1,3 @@
-# Admin UI Components
+# THIS LIBRARY IS DEPRECATED
 
-This library contains components used by the CockroachDB Admin UI. 
-
-```
-  npm install --save-dev @cockroachlabs/admin-ui-components
-```
-
-Components are exported individually from the package,
-
-```javascript
-import { Drawer } from "@cockroachlabs/admin-ui-components";
-
-export default props => (
-  <div>
-    <Drawer />
-  </div>
-);
-```
+Please see the `cluster-ui` package in https://github.com/cockroachdb/ui for shared DB Console components
