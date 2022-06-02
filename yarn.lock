@@ -3289,25 +3289,20 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.150.tgz#649fe44684c3f1fcb6164d943c5a61977e8cf0bd"
   integrity sha512-kMNLM5JBcasgYscD9x/Gvr6lTAv2NVgsKtet/hm93qMyf/D1pt+7jeEZklKJKxMVmXjxbRVQQGfqDSfipYCO6w==
 
-"@types/long@^3.0.32":
-  version "3.0.32"
-  resolved "https://registry.yarnpkg.com/@types/long/-/long-3.0.32.tgz#f4e5af31e9e9b196d8e5fca8a5e2e20aa3d60b69"
-  integrity sha512-ZXyOOm83p7X8p3s0IYM3VeueNmHpkk/yMlP8CLeOnEcu6hIwPH7YjZBvhQkR0ZFS2DqZAxKtJ/M5fcuv3OU5BA==
-
 "@types/long@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.1.tgz#459c65fa1867dafe6a8f322c4c51695663cc55e9"
   integrity sha512-5tXH6Bx/kNGd3MgffdmP4dy2Z+G4eaXw0SE81Tq3BNadtnMR5/ySMzX4SLEzHJzSmPNn4HIdpQsBvXMUykr58w==
 
-"@types/node@*", "@types/node@^13.7.0":
+"@types/node@*", "@types/node@>=13.7.0":
+  version "17.0.38"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.38.tgz#f8bb07c371ccb1903f3752872c89f44006132947"
+  integrity sha512-5jY9RhV7c0Z4Jy09G+NIDTsCZ5G0L5n+Z+p+Y7t5VJHM30bgwzSjVtlcBxqAj+6L/swIlvtOSzr8rBk/aNyV2g==
+
+"@types/node@^13.7.0":
   version "13.13.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.2.tgz#160d82623610db590a64e8ca81784e11117e5a54"
   integrity sha512-LB2R1Oyhpg8gu4SON/mfforE525+Hi/M1ineICEDftqNVTyFg1aRIeGuTvXAoWHc4nbrFncWtJgMmoyRvuGh7A==
-
-"@types/node@^8.9.4":
-  version "8.10.62"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.62.tgz#8d0d0db44a46ae7679d92e2e36d41bf1c3625d6a"
-  integrity sha512-76fupxOYVxk36kb7O/6KtrAPZ9jnSK3+qisAX4tQMEuGNdlvl7ycwatlHqjoE6jHfVtXFM3pCrCixZOidc5cuw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -11606,10 +11601,10 @@ property-information@^5.0.0:
   dependencies:
     xtend "^4.0.0"
 
-protobufjs@6.8.6:
-  version "6.8.6"
-  resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-6.8.6.tgz#ce3cf4fff9625b62966c455fc4c15e4331a11ca2"
-  integrity sha512-eH2OTP9s55vojr3b7NBaF9i4WhWPkv/nq55nznWNp/FomKrLViprUcqnBjHph2tFQ+7KciGPTPsVWGz0SOhL0Q==
+protobufjs@6.11.3:
+  version "6.11.3"
+  resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-6.11.3.tgz#637a527205a35caa4f3e2a9a4a13ddffe0e7af74"
+  integrity sha512-xL96WDdCZYdU7Slin569tFX712BxsxslWwAfAhCYjQKGTq7dAU91Lomy6nLLhh/dyGhk/YH4TwTSRxTzhuHyZg==
   dependencies:
     "@protobufjs/aspromise" "^1.1.2"
     "@protobufjs/base64" "^1.1.2"
@@ -11621,8 +11616,8 @@ protobufjs@6.8.6:
     "@protobufjs/path" "^1.1.2"
     "@protobufjs/pool" "^1.1.0"
     "@protobufjs/utf8" "^1.1.0"
-    "@types/long" "^3.0.32"
-    "@types/node" "^8.9.4"
+    "@types/long" "^4.0.1"
+    "@types/node" ">=13.7.0"
     long "^4.0.0"
 
 proxy-addr@~2.0.5:
